@@ -22,8 +22,8 @@ jobs:
       - name: Serverless
         uses: serverless/github-action@v1.53.0
         with:
-          args: 
-            - deploy
-            - reservedConcurrency '2'
+          args: >-
+            deploy
+            reservedConcurrency '2'
 
        
