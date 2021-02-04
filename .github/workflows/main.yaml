@@ -24,6 +24,6 @@ jobs:
         with:
           args: >-
             deploy
-            reservedConcurrency '2'
+            --reservedConcurrency '2'
 
        
