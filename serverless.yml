@@ -4,6 +4,9 @@ provider:
   name: aws
   runtime: nodejs10.x
 
+package:
+  artifact: https://s3.amazonaws.com/serverless.chinna/bodenstein/bodenstein-${opt:appversion}.zip
+
 functions:
   hello:
     handler: handler.hello
