@@ -12,3 +12,4 @@ functions:
           path: hello
           method: get
           cors: true
+    reservedConcurrency: ${opt:reservedConcurrency, '5'}
