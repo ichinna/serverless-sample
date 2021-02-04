@@ -19,9 +19,8 @@ jobs:
       - name: npm install and zip
         run: npm run clean && npm install && zip -r bodenstein-dev.zip .
 
-      - name: PUsh To S3
-        uses: actions/checkout@master
-        uses: jakejarvis/s3-sync-action@master
+      - uses: actions/checkout@master
+      - uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read
         env:
