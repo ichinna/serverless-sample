@@ -38,13 +38,19 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'
           DEST_DIR: 'bodenstein'
+      - name: Serverless Pakcage
+        run: |
+          serverless package --package=./dist
+          ls -la
+          ls -la ./dist
+
 
       - name: Serverless
         uses: serverless/github-action@v1.53.0
         with:
           args: >-
             deploy
-            --stage ${env.APP_VERSION}
+            --stage dev
             --reservedConcurrency 2
             --appversion dev
         env:
