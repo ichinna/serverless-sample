@@ -41,7 +41,6 @@ jobs:
       
 
       - name: Serverless Package
-        working-directory: app
         uses: serverless/github-action@v1.53.0
         with: 
           args: >-
