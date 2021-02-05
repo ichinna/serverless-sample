@@ -13,19 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: npm install and zip
-        run: npm install && zip -r bodenstein-dev.zip .
+      # - name: npm install and zip
+      #   run: npm install && zip -r bodenstein-dev.zip .
 
-      - name: Uplaod to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --exclude '*' --include 'bodenstein-dev.zip'
-        env:
-          AWS_S3_BUCKET: 'serverless.chinna'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-1'
-          DEST_DIR: 'bodenstein'
+      # - name: Uplaod to S3
+      #   uses: jakejarvis/s3-sync-action@master
+      #   with:
+      #     args: --acl public-read --exclude '*' --include 'bodenstein-dev.zip'
+      #   env:
+      #     AWS_S3_BUCKET: 'serverless.chinna'
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: 'us-east-1'
+      #     DEST_DIR: 'bodenstein'
 
       - name: Serverless
         uses: serverless/github-action@v1.53.0
@@ -50,10 +50,7 @@ jobs:
         with:
           args: >-
             deploy
-            --stage dev
-            --reservedConcurrency 2
-            --appversion dev
-            --force
+            --package bodenstein-dev
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
