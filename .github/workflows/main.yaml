@@ -32,7 +32,7 @@ jobs:
         with:
           args: >-
             package
-            --package bode-dev
+            --package bodenstein-dev
             --stage dev
             --reservedConcurrency 2
             --appversion dev
@@ -42,7 +42,7 @@ jobs:
           
       - name: LS ALL
         run: |
-          ls -la
+          ls -la bodenstein-dev
           echo "DONE"
 
       - name: Serverless
