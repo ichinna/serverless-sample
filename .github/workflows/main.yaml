@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env: 
+  APP_VERSION: 'dev'
+
 jobs:
   deploy:
     name: deploy
@@ -41,7 +44,7 @@ jobs:
         with:
           args: >-
             deploy
-            --stage dev
+            --stage ${env.APP_VERSION}
             --reservedConcurrency 2
             --appversion dev
         env:
