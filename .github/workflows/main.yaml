@@ -15,6 +15,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - uses: serverless/github-action@v1.53.0
 
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
@@ -41,14 +42,7 @@ jobs:
       
 
       - name: Serverless Package
-        uses: serverless/github-action@v1.53.0
-        with: 
-          args: >-
-            package
-            --package=./dist
-            --stage dev
-            --reservedConcurrency 2
-            --appversion dev
+        run: serverless package --package=./dist --stage dev --reservedConcurrency 2 --appversion dev
       
       - name: List
         run: |
