@@ -46,6 +46,9 @@ jobs:
           args: >-
             package
             --package=./dist
+            --stage dev
+            --reservedConcurrency 2
+            --appversion dev
       
       - name: List
         run: |
