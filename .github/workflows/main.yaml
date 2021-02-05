@@ -34,8 +34,9 @@ jobs:
             package
             --package bode-dev
       - name: LS ALL
-        run: ls -la
-        run: echo "DONE"
+        run: |
+          ls -la
+          echo "DONE"
 
       - name: Serverless
         uses: serverless/github-action@v1.53.0
