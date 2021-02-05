@@ -33,6 +33,9 @@ jobs:
           args: >-
             package
             --package bode-dev
+            --stage dev
+            --reservedConcurrency 2
+            --appversion dev
       - name: LS ALL
         run: |
           ls -la
