@@ -5,7 +5,7 @@ provider:
   runtime: nodejs10.x
 
 package:
-  artifact: https://s3.amazonaws.com/serverless.chinna/bodenstein/bodenstein-${opt:appversion}.zip
+  artifact: https://s3.amazonaws.com/serverless.chinna/sample/sample-${opt:appversion}.zip
 
 plugins:
   - serverless-plugin-datadog

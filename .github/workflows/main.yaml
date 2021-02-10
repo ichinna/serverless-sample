@@ -22,33 +22,22 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+          aws-region: us-east-1
+
+      - name: Package
+        run: |
+          npm install -g serverless@$1.79.0 && \
+          npm run clean && \
+          npm install && \
+          zip -r sample-dev.zip .
       
-      - name: Copy files to the test website with the AWS CLI
-        run: aws s3 ls
-          
-      - name: npm install and zip
-        run: npm install && zip -r sample-dev.zip .
+      - name: Publish to S3
+        run: aws s3 cp ./sample-dev.zip s3://serverless.chinna/sample/sample-dev.zip
 
-      - name: Uplaod to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --exclude '*' --include 'sample-dev.zip'
-        env:
-          AWS_S3_BUCKET: 'serverless.chinna'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-1'
-          DEST_DIR: 'sample'
-
-      - name: Serverless
-        uses: serverless/github-action@v1.53.0
-        with:
-          args: >-
-            deploy
-            --stage dev
+      - name: Serverless Deploy
+        run: |
+          npm install && \
+          serverless deploy \
             --reservedConcurrency 2
             --appversion dev
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            --force
