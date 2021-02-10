@@ -1,10 +1,9 @@
 {
-    "name": "sample-installer",
-    "version": "1.2.0",
-    "dependencies": {
-      "serverless-plugin-datadog": "^0.21.0"
-    },
-    "devDependencies": {},
-    "peerDependencies": {}
-  }
-  
+  "name": "serverless-sample",
+  "version": "1.2.0",
+  "dependencies": {
+    "serverless-plugin-datadog": "^0.21.0"
+  },
+  "devDependencies": {},
+  "peerDependencies": {}
+}
