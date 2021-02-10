@@ -12,9 +12,9 @@ plugins:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: ./handler.hello
     events:
       - http:
-          path: /hello
+          path: hello
           method: post
     reservedConcurrency: ${opt:reservedConcurrency, 5}
