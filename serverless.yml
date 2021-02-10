@@ -15,7 +15,6 @@ functions:
     handler: handler.hello
     events:
       - http:
-          path: hello
-          method: get
-          cors: true
+          path: /hello
+          method: post
     reservedConcurrency: ${opt:reservedConcurrency, 5}
