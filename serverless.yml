@@ -4,17 +4,17 @@ provider:
   name: aws
   runtime: nodejs10.x
 
-package:
-  artifact: https://s3.amazonaws.com/serverless.chinna/sample/sample-${opt:appversion}.zip
+# package:
+#   artifact: https://s3.amazonaws.com/serverless.chinna/sample/sample-${opt:appversion}.zip
 
 plugins:
   - serverless-plugin-datadog
 
 functions:
   hello:
-    handler: ./handler.hello
+    handler: handler.hello
     events:
       - http:
           path: hello
-          method: post
+          method: get
     reservedConcurrency: ${opt:reservedConcurrency, 5}
