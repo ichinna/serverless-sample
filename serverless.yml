@@ -7,6 +7,9 @@ provider:
 package:
   artifact: https://s3.amazonaws.com/serverless.chinna/bodenstein/bodenstein-${opt:appversion}.zip
 
+plugins:
+  - serverless-plugin-datadog
+
 functions:
   hello:
     handler: handler.hello
