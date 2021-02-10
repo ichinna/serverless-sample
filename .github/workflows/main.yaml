@@ -7,6 +7,8 @@ on:
 
 env: 
   APP_VERSION: 'dev'
+  NODE_VERSION: "10.16.0"
+  SERVERLESS_VERSION: "1.79.0"
 
 jobs:
   deploy:
@@ -15,6 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
       - name: Setup Access
         run: |
           echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
@@ -31,7 +36,7 @@ jobs:
 
       - name: Package
         run: |
-          npm install -g serverless@$1.79.0 && \
+          npm install -g serverless@{{ env.SERVERLESS_VERSION }} && \
           npm run clean && \
           npm install && \
           zip -r sample-dev.zip .
