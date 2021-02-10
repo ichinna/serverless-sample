@@ -1,6 +1,13 @@
 'use strict';
 
 const { datadog, sendDistributionMetric } = require("datadog-lambda-js");
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({
+  name: 'sample',
+  stream: process.stdout,
+  level: 'debug'
+});
+
 
 const exec = async event => {
   sendDistributionMetric(
@@ -10,6 +17,8 @@ const exec = async event => {
     "region:us-east-1",             // Another tag
     "service:sample"
   );
+
+  log.debug({formulaExecutionsId: 1, formulaInstanceId: 2}, "This is execution invoke");
 
   return {
     statusCode: 200,
